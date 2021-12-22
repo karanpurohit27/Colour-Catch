@@ -1,18 +1,23 @@
-//Declaring the variable 
 let block = document.getElementsByClassName("box");
 let time = document.getElementById("timer");
 let colorsel = document.getElementById("ColSel");
 let sec = 60;
-
+let start=document.getElementById("start btn-outline-success btn")
+let n=0;
 function Start(){
-     let col;
+    n=1
+
+    let col;
      col = colorsel.options[colorsel.selectedIndex].value;
      randomset(col);
+     
+     Begin();
 }
 
 
 
 function countdown(){
+
     if(sec>0 && sec<=60){
         sec--;
         if(sec<10){
@@ -20,18 +25,19 @@ function countdown(){
         }
         else{
         time.innerHTML = "0:" + sec;
+
         }
     }
     else{
+        n=0;
+        sec=60;
         time.innerHTML = "1:00";
     }
     return sec;
 }
 
+
 //Setting the timer and running it 
-setInterval(countdown,1000);
-
-
 //Give a random color from the array
 let array = ["blue", "green", "yellow", "red", "voilet", "orange"];
 function randomset(){
@@ -41,6 +47,7 @@ function randomset(){
 
 //setting every div a random color
 function set(sel){
+
     let div = block[Math.floor(Math.random()*16)];
     div.style.backgroundColor = sel;
     for(let i = 0 ; i< block.length;i++){
@@ -51,4 +58,10 @@ function set(sel){
 }
 
 //changing the colors of divs in every 1 sec
-setInterval(set, 1000);
+function Begin(){
+if(n==1){
+    set();
+    countdown();
+}
+}
+setInterval(Begin,1000);
