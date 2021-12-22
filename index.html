@@ -18,12 +18,17 @@
         padding: 0;
       }
       .front {
+        margin: 40px;
         background-color: rgba(0, 0, 0, 0.801);
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
         align-items: center;
         flex: 30%;
+      }
+      #heading{
+        display: flex;
+        justify-content: center;
       }
       .play {
         display: flex;
@@ -48,7 +53,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
         <button
@@ -84,7 +89,10 @@
           </form>
         </div>
       </div>
-    </nav>
+    </nav> -->
+    <div class="mb-2">
+      <h2 id="heading">COLOR CATCH</h2>
+    </div>
     <div class="front bg-light ">
       <div class="play mb-2">
         <div class="colorSel">
@@ -92,13 +100,14 @@
             <option value="blue">Blue</option>
             <option value="green">Green</option>
             <option value="red">Red</option>
-            <option value="Voilet">voilet</option>
+            <option value="voilet">voilet</option>
             <option value="yellow">Yellow</option>
-            <option value="Orange">orange</option>
+            <option value="orange">orange</option>
           </select>
         </div>
-        <input class="start btn-outline-success btn" type = "button" onclick = "Start()" value = "Start" style="height: fit-content"> 
-      </input>
+        <button class="start btn-outline-success btn" onclick="Start()" style="height: fit-content">
+          Start
+        </button>
         <h2 id="timer">1:00</h2>
       </div>
       <div id="wrap">
