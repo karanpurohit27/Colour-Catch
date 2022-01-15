@@ -1,24 +1,29 @@
-let block = document.getElementsByClassName("box");
-let time = document.getElementById("timer");
-let colorsel = document.getElementById("ColSel")
-let col = colorsel.options[colorsel.selectedIndex].value;
-let sec = 60;
-let start=document.getElementById("start btn-outline-success btn")
-let n=0;
+//Declaration of Variables
+let block = document.getElementsByClassName("box");//Grid block
+let time = document.getElementById("timer");//timer div
+let colorsel = document.getElementById("ColSel")//Selected color div
+let col = colorsel.options[colorsel.selectedIndex].value;//value of selected color
+let start=document.getElementById("start")//Start button
+let score = document.getElementById("score")//Score div
+let n=0;//for start stop condition
+let increase = 0;//For score increment
+let sec = 60;//for timer of 60 sec
+
+//Start the game 
 function Start(){
-    n=1
+    //Initialize the score
+    increase =0;
+    score.innerHTML = 0;
 
-     
-
-     Begin();
+    n=1;//condition to start and end 
+    Begin();
 }
-
-
 
 
 //Setting the timer and running it 
 //Give a random color from the array
 let array = ["blue", "green", "yellow", "red", "voilet", "orange"];
+
 
 function color_eleminate(){
     for(let index = 0; index<6;index++){
@@ -31,17 +36,24 @@ function color_eleminate(){
     return array;
 }
 
+
+
+//Random color return  
 function randomset(){
-    const array2 = color_eleminate();
+    const array2 = color_eleminate();//Eleminated the selected color from array
     let colors = array2[Math.floor(Math.random()*array.length)]; 
-    return colors;
+    return colors;//returning random color
 }
 
+
+
+
 //setting every div a random color
-color_eleminate();
 function set(){
-    let div = block[Math.floor(Math.random()*16)];
-    div.style.backgroundColor = col;
+    let div = block[Math.floor(Math.random()*16)];//Random block
+    div.style.backgroundColor = col;//Assigning color
+
+    //Assigning other blocks random colors
     for(let i = 0 ; i< block.length;i++){
         if(block[i]==div)
             continue;
@@ -49,6 +61,7 @@ function set(){
     }
 }
 
+//Countdown for 1 min
 function countdown(){
 
     if(sec>0 && sec<=60){
@@ -63,17 +76,29 @@ function countdown(){
     }
     else{
         n=0;
+        increase = 0;
         sec=60;
+        alert("Game Over");
         time.innerHTML = "1:00";
     }
     return sec;
 }
 
-//changing the colors of divs in every 1 sec
+//Check whether clicked block is correct or not
+function checked(index){
+    if(n==1){
+        let div = block[index].style.backgroundColor;//Assigning the color of block clicked
+        if(div==col){
+            increase++;//Incrementing the score if right
+            score.innerHTML = increase;//Displaying the score
+        }
+    }
+}
+
 function Begin(){
 if(n==1){
-    set(col);
-    countdown();
+    set();//changing the colors of grid blocks
+    countdown();    
 }
 }
-setInterval(Begin,1000);
+setInterval(Begin,1000);//interval of function in every 1 sec
