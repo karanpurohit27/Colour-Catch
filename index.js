@@ -93,6 +93,10 @@ function checked(index){
             increase++;//Incrementing the score if right
             score.innerHTML = increase;//Displaying the score
         }
+        if(div!=col){
+            increase--;//Incrementing the score if right
+            score.innerHTML = increase;//Displaying the score
+        }
     }
 }
 
